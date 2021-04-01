@@ -1,0 +1,62 @@
+cabal-version: >=1.10
+name: sermo
+version: 0.0.0.1
+license: BSD3
+license-file: LICENSE
+maintainer: vincecoghlan@gmail.com
+author: Vince Coghlan
+category: Lib
+build-type: Simple
+
+flag dev
+    default: True
+
+executable sermo
+    main-is: Main.hs
+    hs-source-dirs: src
+    other-modules: UPrelude
+    default-language: Haskell2010
+    ghc-options: -O2 -fexcess-precision -threaded -eventlog -rtsopts -feager-blackholing
+    build-depends: base
+    default-extensions: DataKinds
+                        ExplicitForAll
+                        FlexibleInstances
+                        LambdaCase
+                        MagicHash
+                        MultiWayIf
+                        NamedFieldPuns
+                        NegativeLiterals
+                        RecordWildCards
+                        TypeSynonymInstances
+                        UnicodeSyntax
+    other-extensions:   AllowAmbiguousTypes
+                        BangPatterns
+                        ConstraintKinds
+                        CPP
+                        DeriveGeneric
+                        ExistentialQuantification
+                        FlexibleContexts
+                        GADTs
+                        InstanceSigs
+                        KindSignatures
+                        LiberalTypeSynonyms
+                        MonoLocalBinds
+                        MultiParamTypeClasses
+                        PatternSynonyms
+                        PolyKinds
+                        RankNTypes
+                        ScopedTypeVariables
+                        StandaloneDeriving
+                        Strict
+                        StrictData
+                        TemplateHaskell
+                        TypeApplications
+                        TypeOperators
+                        UnboxedTuples
+                        UndecidableInstances
+                        ViewPatterns
+    if flag (dev)
+        cpp-options: -DDEVELOPMENT
+        ghc-options: -O0 -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -threaded -eventlog -rtsopts
+    else
+        ghc-options: -O2 -fexcess-precision -threaded -rtsopts -feager-blackholing
